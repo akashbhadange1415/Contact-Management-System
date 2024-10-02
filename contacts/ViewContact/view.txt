@@ -1,0 +1,96 @@
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import Spinner from "../../Spinner/Spinner";
+import { ContactServices } from "../../../services/ContactService";
+
+const ViewContact = () => {
+  const [contact, setContact] = useState({});
+  const [loading, setLoading] = useState(true);
+  const id=useParams()
+
+  useEffect(() => {
+    let promise = new Promise((res, rej) => {
+      
+      let response = ContactServices.viewContact(id);
+      res(response);
+      rej("error");
+    });
+    promise
+      .then((res) => {
+        // setLoading(true);
+        console.log(res.data);
+        setLoading(false);
+        setContact(res.data.contact);
+        
+      })
+      .catch(() => {
+        // alert("error while fetching data");
+        setLoading(true);
+      });
+  }, []);
+
+  return (
+    <div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <React.Fragment>
+          <section className="view-contact-intro p-3 ">
+            <div className="container">
+              <div className="row">
+                <p className="h3 text-success fw-bold">View Contact</p>
+                <p className="fst-italic">Lorem ipsum dolor sit amet.</p>
+              </div>
+            </div>
+          </section>
+          <section className="view-contact">
+            <div className="container">
+              <div className="row d-flex justify-content-center ">
+                <div className="col">
+                  <img
+                    src={contact.photo}
+                    alt={contact.name}
+                    className="img-fluid"
+                  />
+                </div>
+              </div>
+              <div className="row mt-3 ">
+                <div className="col-md-8 ">
+                  <ul className="list-group">
+                    <li className="list-group-item list-group-item-action">
+                      Name : <span className="fw-bold">{contact.name}</span>
+                    </li>
+                    <li className="list-group-item list-group-item-action">
+                      Contact : <span className="fw-bold">{contact.mobile}</span>
+                    </li>
+                    <li className="list-group-item list-group-item-action">
+                      Email : <span className="fw-bold">{contact.email}</span>
+                    </li>
+                    <li className="list-group-item list-group-item-action">
+                      Company : <span className="fw-bold">{contact.companyName}</span>
+                    </li>
+                    <li className="list-group-item list-group-item-action">
+                      Group : <span className="fw-bold">{contact.groupName}</span>
+                    </li>
+                    <li className="list-group-item list-group-item-action">
+                      Title : <span className="fw-bold">{contact.title}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="row ">
+                <div className="col-3 mt-4">
+                  <Link to={"/"} className="btn btn-success">
+                    Back
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      )}
+    </div>
+  );
+};
+
+export default ViewContact;

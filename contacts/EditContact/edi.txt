@@ -1,0 +1,67 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+// import Spinner from "../../Spinner/Spinner";
+
+const EditContact = () => {
+  return (
+    <div>
+        <React.Fragment>
+        <section className="add-contact">
+        <div className="container p-3">
+            <div className="row">
+              <p className="text-primary h4 fw-bold">Edit  Contact</p>
+              <p className="fst-italic"> Enter Respective field Carefully</p>
+            </div>
+
+            <div className="row d-flex align-items-center">
+              <div className="col-md-4">
+
+                <form action="">
+                  <div className="mb-2">
+                    <input type="text" className='form-control' placeholder='Name' name='name'/>
+                  </div>
+                  <div className="mb-2">
+                    <input type="text" className='form-control' placeholder='Photo url' name='photo' />
+                  </div>
+                  <div className="mb-2">
+                    <input type="number" className='form-control' placeholder='Mobile' name='mobile'/>
+                  </div>
+                  <div className="mb-2">
+                    <input type="email" className='form-control' placeholder='Email' name='email' />
+                  </div>
+                  <div className="mb-2">
+                    <input type="text" className='form-control' placeholder='Company Name' name='companyName' />
+                  </div>
+                  <div className="mb-2">
+                    <input type="text" className='form-control' placeholder='Title' name='title' />
+                  </div>
+                  <div className="mb-2">
+                    <select className='form-control'  name='groupName'>
+                    <option value="group1">Group 1</option>
+                    <option value="group2">Group 2</option>
+                    </select>
+                    
+                  </div>
+                  <div className="mb-2">
+                    <input type="submit" className='btn btn-primary' value="create"/>
+                    <Link to={'/'} className='btn btn-danger ms-2'>Cancel</Link>
+                  </div>
+                </form>
+               
+              </div>
+              <div className="col-md-8">
+                
+              <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=740&t=st=1696672007~exp=1696672607~hmac=5f077014d775fbaef51b2cad36dcaa9ae88c9b432f0840e16fbfa78c4d438fb5" alt="" className="img-fluid" />
+              </div>
+            </div>
+        </div>
+
+        </section>
+      </React.Fragment>
+
+
+    </div>
+  )
+}
+
+export default EditContact
